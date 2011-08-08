@@ -6,3 +6,6 @@ where,
 N1 = distance of first term from common parent
 N2 = distance of second term from common parent
 N3 = distance of common parent from the root
+
+
+***Note: Pointers for the common parent query from http://biostar.stackexchange.com/questions/10961/common-parent-between-go-terms
