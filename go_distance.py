@@ -1,9 +1,10 @@
 import re
+import sys
 import urllib2
 import MySQLdb
 
-__author__ = 'Yogesh'
-
+__author__ = 'Yogesh Pandit'
+__data__ = 'Aug 08, 2011'
 # 2*N3/(N1+N2+2*N3)
 
 def get_GO_Ids(uID, type):
@@ -31,7 +32,7 @@ def calculate_GO_distance(id1, id2, id_type):
     if id_type is None:
         raise ValueError("Incorrect ID type (go/uniprot)")
     if id_type == 'go':
-        term, dist, N1, N2 = get_common_parent(id1, id2)
+        term, dist, N1, N2 = get_common_parent(id1.strip(), id2.strip())
         N3 = get_distance_to_root(term)
         #print ("N1=" + str(N1) + "\nN2=" + str(N2) + "\nN3=" + str(N3))
         go_dist = (2 * N3) / (float)(N1 + N2 + (2 * N3))
@@ -61,14 +62,14 @@ def calculate_GO_distance(id1, id2, id_type):
         if min_term is not None:
             N3 = get_distance_to_root(min_term)
             go_dist = (2 * N3) / (float)(N1 + N2 + (2 * N3))
-            print id1, id2, go_dist
+            return go_dist
         else:
-            print id1, id2, 0
+            0
 
 
 def get_common_parent(go_id1, go_id2):
     """
-    
+    Find the common parent closest to both the GO terms
     """
     ans1 = get_ancestors(go_id1)
     ans2 = get_ancestors(go_id2)
@@ -107,7 +108,7 @@ def connect_GO_mysql():
 
 def get_ancestors(go_id):
     """
-
+    Get all the ancestors for a given GO term
     """
     db = connect_GO_mysql()
     c = db.cursor()
@@ -124,7 +125,7 @@ def get_ancestors(go_id):
 
 def get_distance_to_root(go_id):
     """
-
+    Shortest distance of a GO term from the root
     """
     db = connect_GO_mysql()
     c = db.cursor()
@@ -140,7 +141,27 @@ def get_distance_to_root(go_id):
     return nums[0]
 
 
-calculate_GO_distance('GO:0001578', 'GO:0030036', 'go')
-calculate_GO_distance('O04630', 'O13297', 'uniprot')
-calculate_GO_distance('O01482', 'Q12072', 'uniprot')
-calculate_GO_distance('O07893', 'O13329', 'uniprot')
+def main():
+    if len(sys.argv) == 2:
+        file = open(sys.argv[1], 'r')
+        for line in file:
+            inputs = line.split("\t")
+            go_dist = calculate_GO_distance(inputs[0], inputs[1], 'uniprot')
+            print (inputs[0] + "\t" + inputs[1] + "\t" + str(go_dist).strip())
+    else:
+        usage()
+
+
+def usage():
+    print ("No input file")
+    print("Usage: python go_distance.py <input-file>")
+
+
+def test():
+    calculate_GO_distance('GO:0001578', 'GO:0030036', 'go')
+    calculate_GO_distance('O04630', 'O13297', 'uniprot')
+    calculate_GO_distance('O01482', 'Q12072', 'uniprot')
+    calculate_GO_distance('O07893', 'O13329', 'uniprot')
+
+if __name__ == "__main__":
+    main()
