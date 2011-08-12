@@ -8,7 +8,7 @@ where,
 	N3 = distance of common parent from the root
 
 To run the script:
-	python go_distance.py input.txt
+	$ python go_distance.py input.txt
 
 Sample output looks like this (depending on the input)
 
