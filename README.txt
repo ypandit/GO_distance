@@ -1,13 +1,16 @@
 Calculates gene ontology distance for a pair of UniProt/GeneOntology Identifiers using the formula
 
-2*N3/(N1+N2+2*N3)
+	2*N3/(N1+N2+2*N3)
 
 where,
 	N1 = distance of first term from common parent
 	N2 = distance of second term from common parent
 	N3 = distance of common parent from the root
 
-Sample output looks like this
+To run the script:
+	python go_distance.py input.txt
+
+Sample output looks like this (depending on the input)
 
 	GO:0001578 GO:0030036 0.222222222222
 	O04630 O13297 0.428571428571
