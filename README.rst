@@ -1,6 +1,6 @@
 .. -*- mode: rst -*-
 
-Calculates gene ontology distance for a pair of UniProt/GeneOntology Identifiers using the formula:
+Calculates gene ontology distance for a pair of UniProt/GeneOntology Identifiers using the formula::
 
 	2 * N3 / (N1 + N2 + (2 * N3))
 
