@@ -4,8 +4,9 @@ import urllib2
 import MySQLdb
 
 __author__ = 'Yogesh Pandit'
-__data__ = 'Aug 08, 2011'
-# 2*N3/(N1+N2+2*N3)
+__date__ = 'Aug 08, 2011'
+
+# 2 * N3 / (N1 + N2 + (2 * N3))
 
 def get_GO_Ids(uID, type):
     """
