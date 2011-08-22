@@ -145,9 +145,11 @@ def get_distance_to_root(go_id):
 def main():
     if len(sys.argv) == 2:
         file = open(sys.argv[1], 'r')
+        outfile = open(sys.argv[2], 'w')
         for line in file:
             inputs = line.split("\t")
             go_dist = calculate_GO_distance(inputs[0], inputs[1], 'uniprot')
+            outfile.write(inputs[0] + "\t" + inputs[1] + "\t" + str(go_dist).strip())
             print (inputs[0] + "\t" + inputs[1] + "\t" + str(go_dist).strip())
     else:
         usage()
