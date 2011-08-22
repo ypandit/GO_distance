@@ -12,7 +12,7 @@ where,::
 
 To run the script::
 
-	$ python go_distance.py input.txt
+	$ python go_distance.py input.txt output.txt
 
 Sample output looks like this (depending on the input)::
 
