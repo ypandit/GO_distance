@@ -149,7 +149,7 @@ def main():
         for line in file:
             inputs = line.split("\t")
             go_dist = calculate_GO_distance(inputs[0], inputs[1], 'uniprot')
-            outfile.write(inputs[0] + "\t" + inputs[1] + "\t" + str(go_dist).strip())
+            outfile.write(inputs[0].strip() + "\t" + inputs[1].strip() + "\t" + str(go_dist).strip() + "\n")
             print (inputs[0] + "\t" + inputs[1] + "\t" + str(go_dist).strip())
     else:
         usage()
