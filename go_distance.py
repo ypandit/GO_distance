@@ -114,10 +114,10 @@ def get_ancestors(go_id):
     db = connect_GO_mysql()
     c = db.cursor()
     c.execute("""SELECT DISTINCT graph_path.distance, ancestor.acc
-                    FROM term
-                        INNER JOIN graph_path ON (term.id=graph_path.term2_id)
-			            INNER JOIN term AS ancestor ON (ancestor.id=graph_path.term1_id)
-			        WHERE term.acc=%s""", (go_id,))
+                 FROM term
+                 	INNER JOIN graph_path ON (term.id=graph_path.term2_id)
+			INNER JOIN term AS ancestor ON (ancestor.id=graph_path.term1_id)
+		 WHERE term.acc=%s""", (go_id,))
     res = c.fetchall()
     #return res
     db.close()
