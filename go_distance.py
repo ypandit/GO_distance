@@ -150,14 +150,14 @@ def main():
             inputs = line.split("\t")
             go_dist = calculate_GO_distance(inputs[0], inputs[1], 'uniprot')
             outfile.write(inputs[0].strip() + "\t" + inputs[1].strip() + "\t" + str(go_dist).strip() + "\n")
-            print (inputs[0] + "\t" + inputs[1] + "\t" + str(go_dist).strip())
+            print (inputs[0].strip() + "\t" + inputs[1].strip() + "\t" + str(go_dist).strip())
     else:
         usage()
 
 
 def usage():
     print ("No input file")
-    print("Usage: python go_distance.py <input-file>")
+    print("Usage: python go_distance.py <input-file> <output-file>")
 
 
 def test():
