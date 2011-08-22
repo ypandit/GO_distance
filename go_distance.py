@@ -143,7 +143,7 @@ def get_distance_to_root(go_id):
 
 
 def main():
-    if len(sys.argv) == 2:
+    if len(sys.argv) == 3:
         file = open(sys.argv[1], 'r')
         outfile = open(sys.argv[2], 'w')
         for line in file:
